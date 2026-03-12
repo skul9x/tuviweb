@@ -1,0 +1,50 @@
+:root {
+  /* 🎨 Color Palette */
+  --bg-color: #0a0a0f;
+  --surface-color: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --gold-primary: #d4a74a;
+  --gold-dark: #8b6914;
+  --gold-glow: rgba(212, 167, 74, 0.15);
+  --text-primary: #e8e6e3;
+  --text-muted: #9a9590;
+  --text-dim: #5a5550;
+
+  /* Star Status Colors */
+  --star-mieu: #4ade80;
+  --star-vuong: #60a5fa;
+  --star-dac: #fbbf24;
+  --star-binh: #9a9590;
+  --star-ham: #ef4444;
+
+  /* Tứ Hóa Colors */
+  --hoa-loc: #4ade80;
+  --hoa-quyen: #ef4444;
+  --hoa-khoa: #60a5fa;
+  --hoa-ky: #f97316;
+
+  /* 📐 Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* 🔲 Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+
+  /* ✨ Animations */
+  --anim-fast: 150ms ease-out;
+  --anim-normal: 300ms ease-in-out;
+  --anim-fade: 400ms ease-out;
+
+  /* 🌫️ Effects */
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-blur: blur(12px);
+  --glass-border: 1px solid rgba(212, 167, 74, 0.12);
+  --gold-gradient: linear-gradient(135deg, #d4a74a, #8b6914);
+}
