@@ -11,13 +11,17 @@ const app = document.querySelector<HTMLDivElement>('#app')!;
 
 app.innerHTML = `
   <header style="text-align: center; margin-bottom: var(--space-xl);">
-    <h1 style="font-size: 2.5rem; letter-spacing: 2px;">TU VI WEB</h1>
+    <h1 style="font-size: 2.5rem; letter-spacing: 2px;">Tử vi AI Pro</h1>
     <p style="color: var(--text-muted);">Hệ thống an sao và luận giải tử vi chuyên nghiệp</p>
   </header>
   
   <div id="form-container"></div>
   <div id="grid-container" style="margin-top: var(--space-2xl); width: 100%;"></div>
   <div id="ai-container" style="margin-top: var(--space-xl);"></div>
+  
+  <footer style="text-align: center; margin-top: var(--space-4xl); padding: var(--space-lg) 0; color: var(--text-muted); font-size: 0.9rem;">
+    © Nguyễn Duy Trường 2026
+  </footer>
 `
 
 const gridComponent = new TuViGrid('grid-container');
@@ -32,14 +36,14 @@ new InputForm('form-container', (data: UserInfo) => {
 async function renderLaso(data: UserInfo) {
   const gridDiv = document.getElementById('grid-container')!;
   const aiDiv = document.getElementById('ai-container')!;
-  
+
   gridDiv.innerHTML = `<div class="glass-card" style="text-align: center; border-color: var(--gold-primary);">🚀 Đang tính toán lá số cho <b>${data.name}</b>...</div>`;
   aiDiv.innerHTML = '';
 
   try {
     const engine = new TuViLogic();
     const currentYear = new Date().getFullYear();
-    
+
     const laso = engine.anSao({
       name: data.name,
       phoneNumber: data.phoneNumber,
@@ -56,7 +60,7 @@ async function renderLaso(data: UserInfo) {
     });
 
     console.log('Lá số calculated:', laso);
-    
+
     // 1. Render the Grid
     gridComponent.render(laso);
 

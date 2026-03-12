@@ -1,29 +1,54 @@
 {
-  "updated_at": "2026-03-12T14:15:00Z",
+  "updated_at": "2026-03-12T23:18:35Z",
   "working_on": {
-    "feature": "AI UX Enhancement",
-    "task": "Added loading spinner with custom text for AI interpretation",
+    "feature": "AI UX Enhancement + Branding",
+    "task": "Updated site title and added copyright footer",
     "status": "completed",
-    "files": ["src/styles/global.css", "src/components/AIInterpretation.ts"],
+    "files": [
+      "src/main.ts",
+      "src/styles/global.css",
+      "src/components/AIInterpretation.ts"
+    ],
     "blockers": [],
-    "notes": "Loading indicator helps prevent 'laggy' feeling during AI call."
+    "notes": "Added branding changes and type declarations; dev server tested locally"
   },
   "pending_tasks": [
-    { "task": "Verify production deployment after Vercel redeploy", "priority": "high" },
-    { "task": "Enhance UI for Phi Tinh visualization", "priority": "low" }
+    {
+      "task": "Verify production deployment after Vercel redeploy",
+      "priority": "high"
+    },
+    {
+      "task": "Enhance UI for Phi Tinh visualization",
+      "priority": "low"
+    }
   ],
   "recent_changes": [
+    {
+      "timestamp": "2026-03-12T23:15:00Z",
+      "type": "chore",
+      "description": "Updated site title to 'Tử vi AI Pro' and added copyright footer",
+      "files": [
+        "src/main.ts"
+      ]
+    },
     {
       "timestamp": "2026-03-12T15:10:00Z",
       "type": "feat",
       "description": "Added loading spinner and custom text indicators for AI interpretation phase.",
-      "files": ["src/styles/global.css", "src/components/AIInterpretation.ts"]
+      "files": [
+        "src/styles/global.css",
+        "src/components/AIInterpretation.ts"
+      ]
     },
     {
       "timestamp": "2026-03-12T14:05:00Z",
       "type": "security",
       "description": "Implemented Serverless Proxy architecture to prevent Gemini API Key leaks.",
-      "files": ["api/gemini.ts", "src/utils/AIService.ts", "vercel.json"]
+      "files": [
+        "api/gemini.ts",
+        "src/utils/AIService.ts",
+        "vercel.json"
+      ]
     }
   ],
   "errors_encountered": [
