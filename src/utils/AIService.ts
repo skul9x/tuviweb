@@ -1,16 +1,20 @@
 import type { LasoData } from '../types';
+import { buildPromptJson } from '../core/prompt-builder';
 
 export class AIService {
     constructor() {}
 
     public async *generateReadingStream(data: LasoData): AsyncGenerator<string> {
         try {
+            // Build the prompt string on the client side
+            const prompt = buildPromptJson(data);
+
             const response = await fetch('/api/gemini', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(data),
+                body: JSON.stringify({ prompt }),
             });
 
             if (!response.ok) {

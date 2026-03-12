@@ -1,5 +1,4 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { buildPromptJson } from '../src/core/prompt-builder';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
 // We fetch the API keys from the server environment, NOT the client.
@@ -23,12 +22,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     try {
-        const lasoData = req.body;
-        if (!lasoData) {
-            return res.status(400).json({ error: 'Missing LasoData in request body' });
+        const { prompt } = req.body;
+        if (!prompt) {
+            return res.status(400).json({ error: 'Missing prompt in request body' });
         }
 
-        const prompt = buildPromptJson(lasoData);
         
         const models = [
             "gemini-3-flash-preview",
