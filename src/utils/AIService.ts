@@ -1,66 +1,68 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
 import type { LasoData } from '../types';
-import { buildPromptJson } from '../core/prompt-builder';
 
 export class AIService {
-    private static API_KEYS = [
-        "AIzaSyDrMZ0e1iMlAAesOGeSZyXRTX1gFjpEE0s",
-        "AIzaSyC_KVRCwPmOjDNFC89YXLo7Ql3i_cg6loA",
-        "AIzaSyAfyY-Mb4VjucikOIV6L--spFUzwbXg9AY",
-        "AIzaSyDJvfFl-oEdaY8xZjLOXr0F0tfgmjFLcVs",
-        "AIzaSyDZKUHwv4YOqwXinmdAFphYL4jdmggRioE"
-    ];
-
-    private currentKeyIndex = 0;
-
     constructor() {}
 
     public async *generateReadingStream(data: LasoData): AsyncGenerator<string> {
-        const prompt = this.constructPrompt(data);
-        const models = [
-            "gemini-3-flash-preview",
-            "gemini-2.5-flash", 
-            "gemini-2.5-flash-lite", 
-            "gemini-flash-latest", 
-            "gemini-flash-lite-latest"
-        ];
-        
-        let success = false;
-        let lastError: any = null;
+        try {
+            const response = await fetch('/api/gemini', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
 
-        for (let i = 0; i < AIService.API_KEYS.length; i++) {
-            const apiKey = AIService.API_KEYS[this.currentKeyIndex];
-            const genAI = new GoogleGenerativeAI(apiKey);
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                throw new Error(errorData.error || `Lỗi kết nối Server: ${response.status}`);
+            }
 
-            for (const modelName of models) {
-                try {
-                    const model = genAI.getGenerativeModel({ model: modelName });
-                    const result = await model.generateContentStream(prompt);
+            if (!response.body) {
+                throw new Error('Không nhận được dữ liệu stream từ server');
+            }
 
-                    for await (const chunk of result.stream) {
-                        const chunkText = chunk.text();
-                        if (chunkText) yield chunkText;
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let buffer = '';
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                buffer += decoder.decode(value, { stream: true });
+                const lines = buffer.split('\n');
+                buffer = lines.pop() || ''; // Keep the last incomplete line in buffer
+
+                for (const line of lines) {
+                    if (line.startsWith('data: ')) {
+                        const dataStr = line.replace('data: ', '').trim();
+                        if (dataStr === '[DONE]') {
+                            return;
+                        }
+                        
+                        let parsed: any = null;
+                        try {
+                            parsed = JSON.parse(dataStr);
+                            if (parsed.error) {
+                                throw new Error(parsed.error);
+                            }
+                            if (parsed.text) {
+                                yield parsed.text;
+                            }
+                        } catch (e: any) {
+                            // Ignored parse error on incomplete chunks if any
+                            if (e.message !== parsed?.error) {
+                                console.warn("Parse stream error:", e);
+                            } else {
+                                throw e; // throw custom actual error
+                            }
+                        }
                     }
-
-                    success = true;
-                    return; // Exit completely on success
-                } catch (e: any) {
-                    lastError = e;
-                    console.warn(`Failed with ${modelName} using key ${this.currentKeyIndex}:`, e.message);
-                    // Try next model or next key
                 }
             }
-            
-            // Rotate to next key
-            this.currentKeyIndex = (this.currentKeyIndex + 1) % AIService.API_KEYS.length;
+        } catch (error: any) {
+             throw new Error(`Lỗi hệ thống AI: ${error?.message || 'Không rõ nguyên nhân'}`);
         }
-
-        if (!success) {
-            throw new Error(`Tất cả API Keys đều thất bại. Lỗi cuối: ${lastError?.message}`);
-        }
-    }
-
-    public constructPrompt(data: LasoData): string {
-        return buildPromptJson(data);
     }
 }

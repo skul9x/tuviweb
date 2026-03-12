@@ -39,11 +39,13 @@ export class InputForm {
                         <div class="form-group">
                             <label for="phone">Số Điện Thoại</label>
                             <input type="tel" id="phone" name="phone" class="input-field" placeholder="Nhập số điện thoại..." required pattern="^0[3|5|7|8|9][0-9]{8}$">
-                            <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px; line-height: 1.4;">
-                                💡 Giúp AI định danh năng lượng và luận giải chính xác hơn.
-                            </small>
                             <div id="phone-error" class="error-msg" style="display: none;">Số điện thoại không hợp lệ (10 số, bắt đầu bằng 0).</div>
                         </div>
+                    </div>
+                    
+                    <div style="background: rgba(212, 167, 74, 0.05); border: 1px solid rgba(212, 167, 74, 0.1); border-radius: var(--radius-sm); padding: 8px 12px; font-size: 12px; color: var(--text-dim); margin-top: -8px; margin-bottom: 8px; display: flex; align-items: start; gap: 8px;">
+                        <span style="color: var(--gold-primary); margin-top: 1px;">💡</span> 
+                        <span style="line-height: 1.4;">Số điện thoại giúp AI định danh năng lượng và cá nhân hóa luận giải chính xác hơn.</span>
                     </div>
 
                     <div class="form-group">

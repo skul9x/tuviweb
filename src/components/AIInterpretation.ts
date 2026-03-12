@@ -1,7 +1,7 @@
 import { marked } from 'marked';
 import { AIService } from '../utils/AIService';
 import { Toast } from '../utils/Toast';
-import type { LasoData } from '../types';
+import type { LasoData } from '../types';import { buildPromptJson } from '../core/prompt-builder';
 
 export class AIInterpretation {
     private container: HTMLElement;
@@ -36,7 +36,7 @@ export class AIInterpretation {
         const copyBtn = document.getElementById('btn-copy-prompt');
         if (copyBtn) {
             copyBtn.addEventListener('click', () => {
-                const prompt = this.aiService.constructPrompt(data);
+                const prompt = buildPromptJson(data);
                 navigator.clipboard.writeText(prompt).then(() => {
                     Toast.show('Đã sao chép Prompt luận giải!');
                 }).catch(err => {
