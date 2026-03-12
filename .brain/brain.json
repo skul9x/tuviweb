@@ -39,6 +39,7 @@
     "Đồng bộ dữ liệu lá số ngầm lên Supabase",
     "Thiết kế 12 cung lưới 4x4 (Desktop) và 2-column (Mobile)",
     "Nút Copy Prompt luận giải với hiệu ứng ánh kim và Toast notification",
+    "Bắt buộc nhập và validate số điện thoại Việt Nam",
     "Tài liệu pháp lý (Privacy Policy, TOS) và SEO Ready"
   ],
   "knowledge_items": {

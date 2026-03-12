@@ -2,6 +2,7 @@
 
 ## [2026-03-12] - v1.0.0 (Production Ready)
 ### Added
+- **Bắt buộc & Validate SĐT**: Yêu cầu nhập số điện thoại Việt Nam và thông tin giải thích giúp AI luận giải chính xác hơn.
 - Dự án TuViWeb chính thức hoàn thiện bản Web (Vite/TS).
 - Tích hợp **Gemini AI** cho luận giải lá số (Streaming).
 - Tích hợp **Supabase Sync** để đồng bộ dữ liệu.
@@ -13,6 +14,7 @@
 - **SEO & Social**: Thêm `og-image.png` và cấu hình Open Graph cho share link.
 
 ### Fixed
+- **Lỗi hiển thị Combobox**: Sửa màu nền trắng cho danh sách chọn ngày/giờ/phong cách giúp dễ nhìn hơn.
 - Lỗi Build TypeScript (Strict indexing).
 - Lỗi API Fallback cho Gemini (Cập nhật model names 2026).
 - Lỗi `&&` trong PowerShell command.

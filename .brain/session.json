@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-03-12T13:20:00Z",
+  "updated_at": "2026-03-12T13:35:00Z",
   "working_on": {
-    "feature": "Premium UI Enhancements & Mobile Optimization",
-    "task": "Implementing Copy Prompt and fixing Mobile Grid",
+    "feature": "Form Validation & UX Improvements",
+    "task": "Finalizing phone validation and UI polishing",
     "status": "completed",
-    "files": ["src/components/AIInterpretation.ts", "src/styles/tuvi-grid.css", "src/utils/Toast.ts", "src/utils/AIService.ts"],
+    "files": ["src/components/InputForm.ts", "src/styles/input-form.css"],
     "blockers": [],
-    "notes": "Feature is live on GitHub and Vercel."
+    "notes": "Project is updated on GitHub."
   },
   "pending_tasks": [
     { "task": "Configure automatic domain redirects if necessary", "priority": "low" },
@@ -14,12 +14,13 @@
     { "task": "Optimize font loading for Vietnam Pro font", "priority": "low" }
   ],
   "recent_changes": [
+    { "type": "feature", "description": "Mandatory Vietnam phone validation with concise explanation text", "files": ["src/components/InputForm.ts"] },
+    { "type": "fix", "description": "Fixed select dropdown background color for visibility in dark theme", "files": ["src/styles/input-form.css"] },
     { "type": "feature", "description": "Added 'Copy Prompt' button with gold glow and Toast notification", "files": ["src/components/AIInterpretation.ts", "src/utils/Toast.ts"] },
-    { "type": "fix", "description": "Optimized mobile grid layout using Flexbox (2-column view)", "files": ["src/styles/tuvi-grid.css"] },
-    { "type": "deployment", "description": "Synchronized local commits with GitHub repository skul9x/tuviweb", "files": ["all"] }
+    { "type": "deployment", "description": "Latest patches pushed to GitHub skul9x/tuviweb", "files": ["all"] }
   ],
   "decisions_made": [
-    { "decision": "Use Flexbox for mobile grid override", "reason": "Better control over 2-column layout vs grid inline styles" },
-    { "decision": "Hardcode API Keys (temporary)", "reason": "Simplified for non-tech sharing" }
+    { "decision": "Make phone number mandatory", "reason": "Better AI accuracy and identifying users" },
+    { "decision": "Use Flexbox for mobile grid override", "reason": "Better control over 2-column layout vs grid inline styles" }
   ]
 }
