@@ -26,9 +26,11 @@ export class AIInterpretation {
                     </button>
                 </div>
                 <div id="ai-content" class="markdown-body" style="color: var(--text-primary); line-height: 1.8;">
-                    <p style="color: var(--text-muted); font-style: italic;">
-                        Đang kết nối với trí tuệ nhân tạo để phân tích tinh hệ...
-                    </p>
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                        <p class="loading-text">Đang kết nối với trí tuệ nhân tạo để phân tích tinh hệ...</p>
+                        <p class="loading-subtext">Có thể mất khoảng 10 giây để luận giải</p>
+                    </div>
                 </div>
             </div>
         `;
