@@ -1,5 +1,6 @@
 import { marked } from 'marked';
 import { AIService } from '../utils/AIService';
+import { Toast } from '../utils/Toast';
 import type { LasoData } from '../types';
 
 export class AIInterpretation {
@@ -16,9 +17,14 @@ export class AIInterpretation {
     public async readLaso(data: LasoData) {
         this.container.innerHTML = `
             <div class="glass-card" style="margin-top: var(--space-xl); min-height: 200px;">
-                <h2 style="display: flex; align-items: center; gap: 10px; margin-bottom: var(--space-md);">
-                    <span style="font-size: 1.5rem;">🤖</span> Luận Giải AI
-                </h2>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-md);">
+                    <h2 style="display: flex; align-items: center; gap: 10px; margin: 0;">
+                        <span style="font-size: 1.5rem;">🤖</span> Luận Giải AI
+                    </h2>
+                    <button id="btn-copy-prompt" class="btn-icon-gold" title="Sao chép Prompt gửi AI">
+                        <span style="font-size: 1.1rem;">📋</span>
+                    </button>
+                </div>
                 <div id="ai-content" class="markdown-body" style="color: var(--text-primary); line-height: 1.8;">
                     <p style="color: var(--text-muted); font-style: italic;">
                         Đang kết nối với trí tuệ nhân tạo để phân tích tinh hệ...
@@ -26,6 +32,19 @@ export class AIInterpretation {
                 </div>
             </div>
         `;
+
+        const copyBtn = document.getElementById('btn-copy-prompt');
+        if (copyBtn) {
+            copyBtn.addEventListener('click', () => {
+                const prompt = this.aiService.constructPrompt(data);
+                navigator.clipboard.writeText(prompt).then(() => {
+                    Toast.show('Đã sao chép Prompt luận giải!');
+                }).catch(err => {
+                    console.error('Copy failed:', err);
+                    Toast.show('Lỗi khi sao chép!');
+                });
+            });
+        }
 
         const contentDiv = document.getElementById('ai-content')!;
         let fullText = '';

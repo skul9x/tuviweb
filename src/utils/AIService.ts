@@ -59,7 +59,7 @@ export class AIService {
         }
     }
 
-    private constructPrompt(data: LasoData): string {
+    public constructPrompt(data: LasoData): string {
         // Porting the structured prompt from the Android version
         const info = data.info;
         const palaces = data.cung;
