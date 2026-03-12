@@ -1,26 +1,51 @@
 {
-  "updated_at": "2026-03-12T13:35:00Z",
+  "updated_at": "2026-03-12T13:46:00Z",
   "working_on": {
-    "feature": "Form Validation & UX Improvements",
-    "task": "Finalizing phone validation and UI polishing",
-    "status": "completed",
-    "files": ["src/components/InputForm.ts", "src/styles/input-form.css"],
+    "feature": "Expert JSON Prompt Builder",
+    "task": "Completed porting and GitHub push",
+    "status": "idle",
+    "files": [],
     "blockers": [],
-    "notes": "Project is updated on GitHub."
+    "notes": "Full parity with Android prompt achieved."
   },
   "pending_tasks": [
-    { "task": "Configure automatic domain redirects if necessary", "priority": "low" },
-    { "task": "Implement Analytics tracking (Google/Umami)", "priority": "medium" },
-    { "task": "Optimize font loading for Vietnam Pro font", "priority": "low" }
+    { "task": "Enhance UI for Phi Tinh visualization", "priority": "low" },
+    { "task": "Add more complex star formations detection", "priority": "medium" }
   ],
   "recent_changes": [
-    { "type": "feature", "description": "Mandatory Vietnam phone validation with concise explanation text", "files": ["src/components/InputForm.ts"] },
-    { "type": "fix", "description": "Fixed select dropdown background color for visibility in dark theme", "files": ["src/styles/input-form.css"] },
-    { "type": "feature", "description": "Added 'Copy Prompt' button with gold glow and Toast notification", "files": ["src/components/AIInterpretation.ts", "src/utils/Toast.ts"] },
-    { "type": "deployment", "description": "Latest patches pushed to GitHub skul9x/tuviweb", "files": ["all"] }
+    {
+      "timestamp": "2026-03-12T13:45:00Z",
+      "type": "feature",
+      "description": "Ported 1395 lines of Kotlin Gemini construction logic to TypeScript",
+      "files": ["src/core/prompt-builder.ts", "src/utils/AIService.ts", "docs/DESIGN-prompt-builder.md"]
+    },
+    {
+      "timestamp": "2026-03-12T13:40:00Z",
+      "type": "docs",
+      "description": "Created detailed design spec for Prompt Builder",
+      "files": ["docs/DESIGN-prompt-builder.md"]
+    }
+  ],
+  "errors_encountered": [
+    {
+      "error": "npx script execution policy on Windows",
+      "solution": "Use npx.cmd instead of npx",
+      "resolved": true
+    },
+    {
+      "error": "TS verbatimModuleSyntax lint error",
+      "solution": "Use 'import type' for interfaces",
+      "resolved": true
+    }
   ],
   "decisions_made": [
-    { "decision": "Make phone number mandatory", "reason": "Better AI accuracy and identifying users" },
-    { "decision": "Use Flexbox for mobile grid override", "reason": "Better control over 2-column layout vs grid inline styles" }
+    {
+      "decision": "1:1 parity with Android version",
+      "reason": "To ensure identical AI output quality across platforms"
+    },
+    {
+      "decision": "New module prompt-builder.ts",
+      "reason": "Keep AIService clean and separates prompt construction from API logic"
+    }
   ]
 }

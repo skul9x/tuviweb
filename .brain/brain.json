@@ -19,7 +19,7 @@
     "ai": {
       "provider": "Google Gemini",
       "models": ["gemini-3-flash-preview", "gemini-2.5-flash", "gemini-flash-latest"],
-      "features": ["Streaming", "Markdown Rendering", "Key Rotation"]
+      "features": ["Streaming", "Markdown Rendering", "Key Rotation", "Expert JSON Prompting"]
     },
     "database": {
       "provider": "Supabase",
@@ -34,22 +34,26 @@
   },
   "features": [
     "An sao Tử Vi chuẩn xác (Engine ported from Android)",
+    "Luận giải AI Expert JSON Prompt (1:1 parity with Mobile)",
+    "Hệ thống phân loại sao tự động (Sát tinh, Cát tinh, Tứ hóa)",
+    "Phát hiện bộ sao (Sát Phá Tham, Tử Phủ Vũ Tướng, ...)",
+    "Phi tinh Tứ hóa mapping 12 cung",
     "Luận giải AI bằng Gemini với 6 phong cách tùy chọn",
     "Hiển thị Tứ Hóa badges trực quan",
     "Đồng bộ dữ liệu lá số ngầm lên Supabase",
     "Thiết kế 12 cung lưới 4x4 (Desktop) và 2-column (Mobile)",
-    "Nút Copy Prompt luận giải với hiệu ứng ánh kim và Toast notification",
-    "Bắt buộc nhập và validate số điện thoại Việt Nam",
-    "Tài liệu pháp lý (Privacy Policy, TOS) và SEO Ready"
+    "Bắt buộc nhập và validate số điện thoại Việt Nam"
   ],
   "knowledge_items": {
     "patterns": [
       "Key Rotation Pattern for Gemini API to avoid quota limits",
-      "Palace Grid mapping for 4x4 layout",
-      "Lunar conversion bridge between JS and original logic"
+      "Star Classification and Formation Detection logic (Ported from Kotlin)",
+      "Palace-to-JSON Expert Mapping for high-accuracy AI interpretation",
+      "Axis Mapping for Mệnh-Di, Quan-Thê relationships"
     ],
     "gotchas": [
       "Gemini model names in 2026 use versioned strings like gemini-3-flash-preview",
+      "Phi Tinh data requires line-by-line regex parsing from engine strings",
       "Vite builds require strict TS typing for indexable objects"
     ]
   }
