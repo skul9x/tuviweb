@@ -1,51 +1,47 @@
 {
-  "updated_at": "2026-03-12T13:46:00Z",
+  "updated_at": "2026-03-12T14:10:00Z",
   "working_on": {
-    "feature": "Expert JSON Prompt Builder",
-    "task": "Completed porting and GitHub push",
-    "status": "idle",
-    "files": [],
+    "feature": "Security & UI Polish",
+    "task": "Secured API Keys and fixed layout",
+    "status": "completed",
+    "files": ["api/gemini.ts", "src/utils/AIService.ts", "src/components/InputForm.ts", "vercel.json"],
     "blockers": [],
-    "notes": "Full parity with Android prompt achieved."
+    "notes": "System is now hardened against API key leaks and production-ready on Vercel."
   },
   "pending_tasks": [
-    { "task": "Enhance UI for Phi Tinh visualization", "priority": "low" },
-    { "task": "Add more complex star formations detection", "priority": "medium" }
+    { "task": "Verify production deployment after Vercel redeploy", "priority": "high" },
+    { "task": "Enhance UI for Phi Tinh visualization", "priority": "low" }
   ],
   "recent_changes": [
     {
-      "timestamp": "2026-03-12T13:45:00Z",
-      "type": "feature",
-      "description": "Ported 1395 lines of Kotlin Gemini construction logic to TypeScript",
-      "files": ["src/core/prompt-builder.ts", "src/utils/AIService.ts", "docs/DESIGN-prompt-builder.md"]
+      "timestamp": "2026-03-12T14:05:00Z",
+      "type": "security",
+      "description": "Implemented Serverless Proxy architecture to prevent Gemini API Key leaks.",
+      "files": ["api/gemini.ts", "src/utils/AIService.ts", "vercel.json"]
     },
     {
-      "timestamp": "2026-03-12T13:40:00Z",
-      "type": "docs",
-      "description": "Created detailed design spec for Prompt Builder",
-      "files": ["docs/DESIGN-prompt-builder.md"]
+      "timestamp": "2026-03-12T13:50:00Z",
+      "type": "ui",
+      "description": "Fixed phone input helper text causing layout distortion; added premium info banner.",
+      "files": ["src/components/InputForm.ts"]
     }
   ],
   "errors_encountered": [
     {
-      "error": "npx script execution policy on Windows",
-      "solution": "Use npx.cmd instead of npx",
+      "error": "Vercel 500 on /api/gemini due to catch-all rewrite",
+      "solution": "Updated vercel.json to exclude /api/(.*) from index.html rewrite",
       "resolved": true
     },
     {
-      "error": "TS verbatimModuleSyntax lint error",
-      "solution": "Use 'import type' for interfaces",
+      "error": "API Key leaked on GitHub",
+      "solution": "Moved keys to Vercel Environment Variables and implemented backend proxy",
       "resolved": true
     }
   ],
   "decisions_made": [
     {
-      "decision": "1:1 parity with Android version",
-      "reason": "To ensure identical AI output quality across platforms"
-    },
-    {
-      "decision": "New module prompt-builder.ts",
-      "reason": "Keep AIService clean and separates prompt construction from API logic"
+      "decision": "Serverless Proxy over .env frontend",
+      "reason": "Vite/Frontend .env still bundles keys into JS; Proxy keeps them 100% on server."
     }
   ]
 }

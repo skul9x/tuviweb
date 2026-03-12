@@ -18,15 +18,40 @@
     },
     "ai": {
       "provider": "Google Gemini",
-      "models": ["gemini-3-flash-preview", "gemini-2.5-flash", "gemini-flash-latest"],
-      "features": ["Streaming", "Markdown Rendering", "Key Rotation", "Expert JSON Prompting"]
+      "models": [
+        "gemini-3-flash-preview",
+        "gemini-2.5-flash",
+        "gemini-flash-latest",
+        "gemini-flash-lite-latest"
+      ],
+      "features": [
+        "Streaming",
+        "Markdown Rendering",
+        "Key Rotation",
+        "Expert JSON Prompting",
+        "Serverless API Proxy"
+      ]
+    },
+    "architecture": {
+      "proxy": {
+        "pattern": "Vercel Serverless Function (Backend Proxy)",
+        "purpose": "Shielding API Keys from client-side exposure and GitHub leaks",
+        "implementation": "api/gemini.ts calls Google SDK; src/utils/AIService.ts calls /api/gemini"
+      }
     },
     "database": {
       "provider": "Supabase",
       "tables": [
         {
           "name": "laso_sync",
-          "columns": ["id", "user_id", "data", "ip_address", "device_info", "created_at"],
+          "columns": [
+            "id",
+            "user_id",
+            "data",
+            "ip_address",
+            "device_info",
+            "created_at"
+          ],
           "purpose": "Syncing calculated astrological charts from web/mobile"
         }
       ]
@@ -42,19 +67,23 @@
     "Hiển thị Tứ Hóa badges trực quan",
     "Đồng bộ dữ liệu lá số ngầm lên Supabase",
     "Thiết kế 12 cung lưới 4x4 (Desktop) và 2-column (Mobile)",
-    "Bắt buộc nhập và validate số điện thoại Việt Nam"
+    "Bắt buộc nhập và validate số điện thoại Việt Nam",
+    "Bảo mật Proxy API ngăn chặn rò rỉ API Key"
   ],
   "knowledge_items": {
     "patterns": [
       "Key Rotation Pattern for Gemini API to avoid quota limits",
       "Star Classification and Formation Detection logic (Ported from Kotlin)",
       "Palace-to-JSON Expert Mapping for high-accuracy AI interpretation",
-      "Axis Mapping for Mệnh-Di, Quan-Thê relationships"
+      "Axis Mapping for Mệnh-Di, Quan-Thê relationships",
+      "Serverless Backend Proxy for sensitive API key protection"
     ],
     "gotchas": [
       "Gemini model names in 2026 use versioned strings like gemini-3-flash-preview",
       "Phi Tinh data requires line-by-line regex parsing from engine strings",
-      "Vite builds require strict TS typing for indexable objects"
+      "Vite builds require strict TS typing for indexable objects",
+      "Vercel rewrites (vercel.json) must exclude /api/ to allow serverless functions on SPA",
+      "Hardcoding API keys in frontend leads to immediate leak reports on GitHub"
     ]
   }
 }
