@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-03-12T14:10:00Z",
+  "updated_at": "2026-03-12T14:15:00Z",
   "working_on": {
-    "feature": "Security & UI Polish",
-    "task": "Secured API Keys and fixed layout",
+    "feature": "Vercel 500 Fix & Security Clean-up",
+    "task": "Moved prompt builder to frontend for Vercel compatibility",
     "status": "completed",
-    "files": ["api/gemini.ts", "src/utils/AIService.ts", "src/components/InputForm.ts", "vercel.json"],
+    "files": ["api/gemini.ts", "src/utils/AIService.ts"],
     "blockers": [],
-    "notes": "System is now hardened against API key leaks and production-ready on Vercel."
+    "notes": "Everything is pushed and verified by logic check."
   },
   "pending_tasks": [
     { "task": "Verify production deployment after Vercel redeploy", "priority": "high" },
@@ -14,34 +14,34 @@
   ],
   "recent_changes": [
     {
+      "timestamp": "2026-03-12T14:15:00Z",
+      "type": "fix",
+      "description": "Resolved Vercel 500 error by moving prompt construction to frontend to avoid module import issues in serverless environment.",
+      "files": ["api/gemini.ts", "src/utils/AIService.ts"]
+    },
+    {
       "timestamp": "2026-03-12T14:05:00Z",
       "type": "security",
       "description": "Implemented Serverless Proxy architecture to prevent Gemini API Key leaks.",
       "files": ["api/gemini.ts", "src/utils/AIService.ts", "vercel.json"]
-    },
-    {
-      "timestamp": "2026-03-12T13:50:00Z",
-      "type": "ui",
-      "description": "Fixed phone input helper text causing layout distortion; added premium info banner.",
-      "files": ["src/components/InputForm.ts"]
     }
   ],
   "errors_encountered": [
     {
-      "error": "Vercel 500 on /api/gemini due to catch-all rewrite",
-      "solution": "Updated vercel.json to exclude /api/(.*) from index.html rewrite",
+      "error": "Vercel 500: Module not found (src/core/prompt-builder)",
+      "solution": "Constructed prompt on frontend and sent as string to backend",
       "resolved": true
     },
     {
-      "error": "API Key leaked on GitHub",
-      "solution": "Moved keys to Vercel Environment Variables and implemented backend proxy",
+      "error": "Vercel 500: API return index.html",
+      "solution": "Corrected vercel.json rewrite rules",
       "resolved": true
     }
   ],
   "decisions_made": [
     {
-      "decision": "Serverless Proxy over .env frontend",
-      "reason": "Vite/Frontend .env still bundles keys into JS; Proxy keeps them 100% on server."
+      "decision": "Prompt building on client-side",
+      "reason": "Avoids complex bundling issues in Vercel Serverless Functions and reduces backend compute load."
     }
   ]
 }

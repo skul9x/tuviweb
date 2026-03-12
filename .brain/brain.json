@@ -36,7 +36,7 @@
       "proxy": {
         "pattern": "Vercel Serverless Function (Backend Proxy)",
         "purpose": "Shielding API Keys from client-side exposure and GitHub leaks",
-        "implementation": "api/gemini.ts calls Google SDK; src/utils/AIService.ts calls /api/gemini"
+        "implementation": "Frontend builds prompt string -> POSTs to api/gemini.ts -> Backend attaches key and calls Gemini SDK."
       }
     },
     "database": {
@@ -76,14 +76,15 @@
       "Star Classification and Formation Detection logic (Ported from Kotlin)",
       "Palace-to-JSON Expert Mapping for high-accuracy AI interpretation",
       "Axis Mapping for Mệnh-Di, Quan-Thê relationships",
-      "Serverless Backend Proxy for sensitive API key protection"
+      "Serverless Backend Proxy for sensitive API key protection",
+      "Frontend-side Prompt Construction to avoid cross-module backend dependencies"
     ],
     "gotchas": [
       "Gemini model names in 2026 use versioned strings like gemini-3-flash-preview",
       "Phi Tinh data requires line-by-line regex parsing from engine strings",
       "Vite builds require strict TS typing for indexable objects",
       "Vercel rewrites (vercel.json) must exclude /api/ to allow serverless functions on SPA",
-      "Hardcoding API keys in frontend leads to immediate leak reports on GitHub"
+      "Vercel Serverless Functions cannot easily resolve imports from src/ outside the api/ folder without specialized build config. Fix: construct prompt on frontend."
     ]
   }
 }
