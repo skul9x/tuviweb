@@ -1,5 +1,6 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import type { LasoData } from '../types';
+import { buildPromptJson } from '../core/prompt-builder';
 
 export class AIService {
     private static API_KEYS = [
@@ -60,43 +61,6 @@ export class AIService {
     }
 
     public constructPrompt(data: LasoData): string {
-        // Porting the structured prompt from the Android version
-        const info = data.info;
-        const palaces = data.cung;
-
-        return `
-Bạn là một AI chuyên luận TỬ VI ĐẨU SỐ theo hệ thống tinh hệ cổ điển.
-Xưng hô: 'Tôi' hoặc 'Tại hạ', gọi người xem là 'Đương số'.
-Phong cách: ${info.readingStyle}.
-
-THÔNG TIN LÁ SỐ:
-- Đương số: ${info.name} (${info.gender})
-- Ngày sinh Âm lịch: ${info.lunarDate} (${info.canChi})
-- Mệnh: ${info.menhNguHanh} - Cục: ${info.cuc}
-- Cung Mệnh tại: ${info.menhTai} - Cung Thân tại: ${info.thanTai}
-- Quan hệ Mệnh-Cục: ${info.cucMenhRelation}
-
-DỮ LIỆU 12 CUNG:
-${palaces.map(c => `
-- Cung ${c.name} (${c.chucNang}) [Cung ${c.canChi}]:
-+ Chính tinh: ${c.chinhTinh.join(', ') || 'Vô chính diệu'}
-+ Phụ tinh: ${c.phuTinh.join(', ')}
-`).join('\n')}
-
-QUY TRÌNH PHÂN TÍCH:
-1. Tóm tắt cấu trúc lá số, thế đứng của các chính tinh.
-2. Đánh giá Mệnh-Thân-Cục và sự tương quan ngũ hành.
-3. Luận giải chi tiết 12 cung (Mệnh, Phu Thê, Quan Lộc, Tài Bạch là trọng điểm).
-4. Phân tích vận hạn năm ${info.viewingYear}.
-5. Kết luận tổng thể.
-
-YÊU CẦU:
-- Mọi nhận định PHẢI có căn cứ từ sao và cung.
-- Sử dụng ngôn ngữ chuyên môn nhưng dễ hiểu.
-- Phân tích tương quan tam hợp, xung chiếu.
-- Nếu cung Vô chính diệu, phải mượn sao cung đối để luận.
-
-Bắt đầu luận giải:
-`;
+        return buildPromptJson(data);
     }
 }
