@@ -7,7 +7,8 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 const getApiKeys = () => {
     const keysString = process.env.GEMINI_API_KEYS;
     if (!keysString) return [];
-    return keysString.split(',').map(k => k.trim()).filter(k => k.length > 0);
+    // Split by comma OR newline, then trim whitespace and filter out empty strings
+    return keysString.split(/[,\n]+/).map(k => k.trim()).filter(k => k.length > 5);
 };
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -85,7 +86,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         }
 
     } catch (error: any) {
-        console.error("Global Error in serverless function:", error);
-        res.status(500).json({ error: error.message || 'Internal Server Error' });
+        console.error("[Vercel API] Global Error:", error);
+        // Ensure we send a valid JSON error response
+        if (!res.writableEnded) {
+            if (res.getHeader('Content-Type') === 'text/event-stream') {
+                res.write(`data: ${JSON.stringify({ error: error.message || 'Internal Server Error' })}\n\n`);
+                res.end();
+            } else {
+                res.status(500).json({ error: error.message || 'Internal Server Error' });
+            }
+        }
     }
 }
