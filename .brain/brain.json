@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "4.0.2"
+  },
+  "project": {
+    "name": "TuViWeb",
+    "type": "Web Application (Vite/TypeScript)",
+    "status": "Production Ready / Deployed",
+    "repository": "https://github.com/skul9x/tuviweb.git"
+  },
+  "tech_stack": {
+    "frontend": {
+      "framework": "Vite 7.x",
+      "language": "TypeScript 5.x",
+      "styling": "Vanilla CSS (Custom Design System)",
+      "ui_style": "Premium Dark Mode / Gold Accents / Glassmorphism"
+    },
+    "ai": {
+      "provider": "Google Gemini",
+      "models": ["gemini-3-flash-preview", "gemini-2.5-flash", "gemini-flash-latest"],
+      "features": ["Streaming", "Markdown Rendering", "Key Rotation"]
+    },
+    "database": {
+      "provider": "Supabase",
+      "tables": [
+        {
+          "name": "laso_sync",
+          "columns": ["id", "user_id", "data", "ip_address", "device_info", "created_at"],
+          "purpose": "Syncing calculated astrological charts from web/mobile"
+        }
+      ]
+    }
+  },
+  "features": [
+    "An sao Tử Vi chuẩn xác (Engine ported from Android)",
+    "Luận giải AI bằng Gemini với 6 phong cách tùy chọn",
+    "Hiển thị Tứ Hóa badges trực quan",
+    "Đồng bộ dữ liệu lá số ngầm lên Supabase",
+    "Thiết kế 12 cung lưới 4x4 responsive"
+  ],
+  "knowledge_items": {
+    "patterns": [
+      "Key Rotation Pattern for Gemini API to avoid quota limits",
+      "Palace Grid mapping for 4x4 layout",
+      "Lunar conversion bridge between JS and original logic"
+    ],
+    "gotchas": [
+      "Gemini model names in 2026 use versioned strings like gemini-3-flash-preview",
+      "Vite builds require strict TS typing for indexable objects"
+    ]
+  }
+}
