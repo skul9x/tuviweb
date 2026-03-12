@@ -37,8 +37,12 @@ export class InputForm {
                             <input type="text" id="name" name="name" class="input-field" placeholder="Nhập họ tên..." required>
                         </div>
                         <div class="form-group">
-                            <label for="phone">Số Điện Thoại (Tùy chọn)</label>
-                            <input type="tel" id="phone" name="phone" class="input-field" placeholder="Nhập số điện thoại...">
+                            <label for="phone">Số Điện Thoại</label>
+                            <input type="tel" id="phone" name="phone" class="input-field" placeholder="Nhập số điện thoại..." required pattern="^0[3|5|7|8|9][0-9]{8}$">
+                            <small style="color: var(--text-muted); font-size: 11px; margin-top: 4px; line-height: 1.4;">
+                                💡 Giúp AI định danh năng lượng và luận giải chính xác hơn.
+                            </small>
+                            <div id="phone-error" class="error-msg" style="display: none;">Số điện thoại không hợp lệ (10 số, bắt đầu bằng 0).</div>
                         </div>
                     </div>
 
@@ -142,9 +146,26 @@ export class InputForm {
 
     private handleFormSubmit(form: HTMLFormElement) {
         const formData = new FormData(form);
+        const phone = formData.get('phone') as string;
+        const phoneError = document.getElementById('phone-error');
+        
+        // Regex validation for Vietnam phone numbers
+        const phoneRegex = /^0[3|5|7|8|9][0-9]{8}$/;
+        if (!phoneRegex.test(phone)) {
+            if (phoneError) {
+                phoneError.style.display = 'block';
+                const phoneInput = document.getElementById('phone') as HTMLInputElement;
+                phoneInput.style.borderColor = 'var(--star-ham)';
+                phoneInput.focus();
+            }
+            return;
+        }
+
+        if (phoneError) phoneError.style.display = 'none';
+
         const data: UserInfo = {
             name: formData.get('name') as string,
-            phoneNumber: formData.get('phone') as string,
+            phoneNumber: phone,
             isMale: formData.get('gender') === 'male',
             day: parseInt(formData.get('day') as string),
             month: parseInt(formData.get('month') as string),
