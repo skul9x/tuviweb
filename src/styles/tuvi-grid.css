@@ -134,22 +134,26 @@
 /* Mobile Layout */
 @media (max-width: 768px) {
   .tuvi-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     gap: 8px;
     background: transparent;
     border: none;
+    display: flex;
+    flex-wrap: wrap;
   }
   
   .center-area {
-    grid-column: auto;
-    grid-row: auto;
+    width: 100%;
+    order: -1;
     margin-bottom: var(--space-md);
   }
   
   .palace-cell {
+    width: calc(50% - 4px);
     border: 1px solid var(--gold-glow);
     border-radius: var(--radius-lg);
     min-height: 100px;
   }
 }
+
