@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap');
+@import './variables.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Be Vietnam Pro', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--gold-primary);
+}
+
+a {
+  color: var(--gold-primary);
+  text-decoration: none;
+  transition: var(--anim-fast);
+}
+
+a:hover {
+  color: var(--gold-dark);
+}
+
+/* Glassmorphism Card Utility */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  transition: var(--anim-normal);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+  background: var(--surface-hover);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* Gold Button Utility */
+.btn-gold {
+  background: var(--gold-gradient);
+  border: none;
+  border-radius: var(--radius-md);
+  color: var(--bg-color);
+  padding: var(--space-sm) var(--space-lg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--anim-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-gold:hover {
+  filter: brightness(1.1);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+.btn-gold:active {
+  transform: scale(0.98);
+}
+
+.btn-gold:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Icon Gold Button */
+.btn-icon-gold {
+  background: var(--glass-bg);
+  border: 1px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  color: var(--gold-primary);
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  transition: var(--anim-normal);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  box-shadow: 0 0 10px var(--gold-glow);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-icon-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(212, 167, 74, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-icon-gold:hover::after {
+  opacity: 1;
+}
+
+.btn-icon-gold:hover {
+  background: var(--surface-hover);
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 20px var(--gold-primary);
+  transform: translateY(-2px);
+}
+
+.btn-icon-gold:active {
+  transform: scale(0.95);
+}
+
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 5px var(--gold-glow); }
+  50% { box-shadow: 0 0 15px var(--gold-primary); }
+  100% { box-shadow: 0 0 5px var(--gold-glow); }
+}
+
+.btn-icon-gold {
+  animation: pulse-gold 3s infinite ease-in-out;
+}
+
+/* AI Markdown Styles */
+.markdown-body {
+  font-size: 15px;
+  line-height: 1.8;
+  word-wrap: break-word;
+}
+
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid var(--gold-glow);
+}
+
+.markdown-body p, .markdown-body ul, .markdown-body ol {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body ul, .markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body li {
+  margin-top: 0.25em;
+}
+
+.markdown-body blockquote {
+  padding: 0 1em;
+  color: var(--text-muted);
+  border-left: 0.25em solid var(--gold-primary);
+  margin-bottom: 16px;
+}
+
+/* Global Container */
+#app {
+  min-height: 100vh;
+  padding: var(--space-xl) var(--space-md);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+/* AI Loading Spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-xl) var(--space-md);
+  text-align: center;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--glass-bg);
+  border-top: 4px solid var(--gold-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: var(--space-md);
+  box-shadow: 0 0 15px var(--gold-glow);
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: var(--gold-primary);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.loading-subtext {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+}

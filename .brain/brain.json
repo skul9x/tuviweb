@@ -1,0 +1,90 @@
+{
+  "meta": {
+    "schema_version": "1.1.0",
+    "awf_version": "4.0.2"
+  },
+  "project": {
+    "name": "TuViWeb",
+    "type": "Web Application (Vite/TypeScript)",
+    "status": "Production Ready / Deployed",
+    "repository": "https://github.com/skul9x/tuviweb.git"
+  },
+  "tech_stack": {
+    "frontend": {
+      "framework": "Vite 7.x",
+      "language": "TypeScript 5.x",
+      "styling": "Vanilla CSS (Custom Design System)",
+      "ui_style": "Premium Dark Mode / Gold Accents / Glassmorphism"
+    },
+    "ai": {
+      "provider": "Google Gemini",
+      "models": [
+        "gemini-3-flash-preview",
+        "gemini-2.5-flash",
+        "gemini-flash-latest",
+        "gemini-flash-lite-latest"
+      ],
+      "features": [
+        "Streaming",
+        "Markdown Rendering",
+        "Key Rotation",
+        "Expert JSON Prompting",
+        "Serverless API Proxy"
+      ]
+    },
+    "architecture": {
+      "proxy": {
+        "pattern": "Vercel Serverless Function (Backend Proxy)",
+        "purpose": "Shielding API Keys from client-side exposure and GitHub leaks",
+        "implementation": "Frontend builds prompt string -> POSTs to api/gemini.ts -> Backend attaches key and calls Gemini SDK."
+      }
+    },
+    "database": {
+      "provider": "Supabase",
+      "tables": [
+        {
+          "name": "laso_sync",
+          "columns": [
+            "id",
+            "user_id",
+            "data",
+            "ip_address",
+            "device_info",
+            "created_at"
+          ],
+          "purpose": "Syncing calculated astrological charts from web/mobile"
+        }
+      ]
+    }
+  },
+  "features": [
+    "An sao Tử Vi chuẩn xác (Engine ported from Android)",
+    "Luận giải AI Expert JSON Prompt (1:1 parity with Mobile)",
+    "Hệ thống phân loại sao tự động (Sát tinh, Cát tinh, Tứ hóa)",
+    "Phát hiện bộ sao (Sát Phá Tham, Tử Phủ Vũ Tướng, ...)",
+    "Phi tinh Tứ hóa mapping 12 cung",
+    "Luận giải AI bằng Gemini với 6 phong cách tùy chọn",
+    "Hiển thị Tứ Hóa badges trực quan",
+    "Đồng bộ dữ liệu lá số ngầm lên Supabase",
+    "Thiết kế 12 cung lưới 4x4 (Desktop) và 2-column (Mobile)",
+    "Bắt buộc nhập và validate số điện thoại Việt Nam",
+    "Bảo mật Proxy API ngăn chặn rò rỉ API Key"
+  ],
+  "knowledge_items": {
+    "patterns": [
+      "Key Rotation Pattern for Gemini API to avoid quota limits",
+      "Star Classification and Formation Detection logic (Ported from Kotlin)",
+      "Palace-to-JSON Expert Mapping for high-accuracy AI interpretation",
+      "Axis Mapping for Mệnh-Di, Quan-Thê relationships",
+      "Serverless Backend Proxy for sensitive API key protection",
+      "Frontend-side Prompt Construction to avoid cross-module backend dependencies"
+    ],
+    "gotchas": [
+      "Gemini model names in 2026 use versioned strings like gemini-3-flash-preview",
+      "Phi Tinh data requires line-by-line regex parsing from engine strings",
+      "Vite builds require strict TS typing for indexable objects",
+      "Vercel rewrites (vercel.json) must exclude /api/ to allow serverless functions on SPA",
+      "Vercel Serverless Functions cannot easily resolve imports from src/ outside the api/ folder without specialized build config. Fix: construct prompt on frontend."
+    ]
+  }
+}

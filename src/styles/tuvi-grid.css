@@ -1,0 +1,159 @@
+.tuvi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, minmax(120px, auto));
+  gap: 2px;
+  background-color: var(--gold-glow);
+  border: 1px solid var(--gold-glow);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.palace-cell {
+  background-color: var(--bg-color);
+  padding: var(--space-sm);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: var(--anim-normal);
+}
+
+.palace-cell:hover {
+  background-color: var(--surface-hover);
+  z-index: 10;
+}
+
+.center-area {
+  grid-column: 2 / 4;
+  grid-row: 2 / 4;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-md);
+  text-align: center;
+  border: 2px solid var(--gold-glow);
+  position: relative;
+}
+
+.center-logo {
+  font-size: 2rem;
+  color: var(--gold-primary);
+  margin-bottom: var(--space-sm);
+}
+
+/* Palace Content */
+.palace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-xs);
+}
+
+.palace-name {
+  color: var(--gold-primary);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.palace-function {
+  color: var(--text-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.stars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.chinh-tinh-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-xs);
+}
+
+.star {
+  font-size: 11px;
+  line-height: 1.2;
+}
+
+.star-mieu { color: var(--star-mieu); }
+.star-vuong { color: var(--star-vuong); }
+.star-dac { color: var(--star-dac); }
+.star-binh { color: var(--star-binh); }
+.star-ham { color: var(--star-ham); }
+
+.phu-tinh-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: var(--space-xs);
+}
+
+.phu-tinh {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+/* Tứ Hóa Badges */
+.badge {
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge-loc { background: var(--hoa-loc); color: var(--bg-color); }
+.badge-quyen { background: var(--hoa-quyen); color: var(--bg-color); }
+.badge-khoa { background: var(--hoa-khoa); color: var(--bg-color); }
+.badge-ky { background: var(--hoa-ky); color: var(--bg-color); }
+
+.cung-chi {
+  position: absolute;
+  bottom: 4px;
+  right: 6px;
+  font-size: 10px;
+  color: var(--text-dim);
+  font-weight: 700;
+}
+
+.palace-score {
+  position: absolute;
+  bottom: 4px;
+  left: 6px;
+  font-size: 9px;
+  color: var(--gold-dark);
+}
+
+/* Mobile Layout */
+@media (max-width: 768px) {
+  .tuvi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .center-area {
+    width: 100%;
+    order: -1;
+    margin-bottom: var(--space-md);
+  }
+  
+  .palace-cell {
+    width: calc(50% - 4px);
+    border: 1px solid var(--gold-glow);
+    border-radius: var(--radius-lg);
+    min-height: 100px;
+  }
+}
+
